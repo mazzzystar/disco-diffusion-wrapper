@@ -24,14 +24,75 @@ import torchvision.transforms as T
 import torchvision.transforms.functional as TF
 from tqdm.notebook import tqdm
 
+import subprocess, os, sys
+
+def gitclone(url):
+  res = subprocess.run(['git', 'clone', url], stdout=subprocess.PIPE).stdout.decode('utf-8')
+  print(res)
+
+def pipi(modulestr):
+  res = subprocess.run(['pip', 'install', modulestr], stdout=subprocess.PIPE).stdout.decode('utf-8')
+  print(res)
+
+def pipie(modulestr):
+  res = subprocess.run(['git', 'install', '-e', modulestr], stdout=subprocess.PIPE).stdout.decode('utf-8')
+  print(res)
+
+def wget(url, outputdir):
+  res = subprocess.run(['wget', url, '-P', f'{outputdir}'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+  print(res)
+
 PROJECT_DIR = os.path.abspath(os.getcwd())
-sys.path.append(f'{PROJECT_DIR}/CLIP')
-sys.path.append(f'{PROJECT_DIR}/guided-diffusion')
-sys.path.append(f'{PROJECT_DIR}/ResizeRight')
-sys.path.append(f'{PROJECT_DIR}/pytorch3d-lite')
 sys.path.append(PROJECT_DIR)
-sys.path.append(f'{PROJECT_DIR}/AdaBins')
-sys.path.append(f'{PROJECT_DIR}/MiDaS')
+try:
+  from CLIP import clip
+except:
+  if not os.path.exists("CLIP"):
+    gitclone("https://github.com/openai/CLIP")
+  sys.path.append(f'{PROJECT_DIR}/CLIP')
+
+try:
+  from guided_diffusion.script_util import create_model_and_diffusion
+except:
+  if not os.path.exists("guided-diffusion"):
+    gitclone("https://github.com/crowsonkb/guided-diffusion")
+  sys.path.append(f'{PROJECT_DIR}/guided-diffusion')
+
+try:
+  from resize_right import resize
+except:
+  if not os.path.exists("ResizeRight"):
+    gitclone("https://github.com/assafshocher/ResizeRight.git")
+  sys.path.append(f'{PROJECT_DIR}/ResizeRight')
+
+try:
+  import py3d_tools
+except:
+  if not os.path.exists('pytorch3d-lite'):
+    gitclone("https://github.com/MSFTserver/pytorch3d-lite.git")
+  sys.path.append(f'{PROJECT_DIR}/pytorch3d-lite')
+
+try:
+  from midas.dpt_depth import DPTDepthModel
+except:
+  if not os.path.exists('MiDaS'):
+    gitclone("https://github.com/isl-org/MiDaS.git")
+  if not os.path.exists('MiDaS/midas_utils.py'):
+    shutil.move('MiDaS/utils.py', 'MiDaS/midas_utils.py')
+  if not os.path.exists(f'{model_path}/dpt_large-midas-2f21e586.pt'):
+    wget("https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt", model_path)
+  sys.path.append(f'{PROJECT_DIR}/MiDaS')
+
+try:
+  sys.path.append(PROJECT_DIR)
+  import disco_xform_utils as dxf
+except:
+  if not os.path.exists("disco-diffusion"):
+    gitclone("https://github.com/alembics/disco-diffusion.git")
+  if os.path.exists('disco_xform_utils.py') is not True:
+    shutil.move('disco-diffusion/disco_xform_utils.py', 'disco_xform_utils.py')
+  sys.path.append(PROJECT_DIR)
+
 
 from CLIP import clip
 from resize_right import resize
