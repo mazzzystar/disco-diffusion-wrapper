@@ -69,7 +69,7 @@ Below are some samples generated using this repo.
 ![](samples/山随平野尽江入大荒流Trending_on_artstation.png)
 > 山随平野尽，江入大荒流，Trending on artstation
 
-You can download all results of our Chinese poem generating results from [here](https://drive.google.com/file/d/1OIsupQqMaYYWu4B0eemUWgvPfTSGyaqf/view?usp=sharing)
+You can download all our Chinese poem generating results from [here].(https://drive.google.com/file/d/1OIsupQqMaYYWu4B0eemUWgvPfTSGyaqf/view?usp=sharing)
 
 If you use this project and produced some interesting results, submissions are welcomed.
 
