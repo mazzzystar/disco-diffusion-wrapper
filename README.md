@@ -57,6 +57,18 @@ Below are some samples generated using this repo.
 
 ![](samples/Snowy_mountains_plains_army_of_ghosts_marching_at_night_with_fluorescent_green_torches_abstract_painting_Trending_on_artstation.png)
 
+
+![](samples/明月松间照清泉石上流中国画.png)
+> 明月松间照，清泉石上流，中国画
+
+![](samples/Effie_castle.jpeg)
+> Elf Castle
+
+![](samples/山随平野尽江入大荒流Trending_on_artstation.png)
+> 山随平野尽，江入大荒流，Trending on artstation
+
+
+
 If you use this project and produced some interesting results, submissions are welcomed.
 
 
