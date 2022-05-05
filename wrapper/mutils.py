@@ -18,6 +18,7 @@ from PIL import Image, ImageOps
 import requests
 from glob import glob
 import json
+import hashlib
 from types import SimpleNamespace
 from torch import nn
 from torch.nn import functional as F
@@ -91,6 +92,20 @@ except:
     wget("https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt", model_path)
   sys.path.append(f'{PROJECT_DIR}/MiDaS')
 
+USE_ADABINS = True
+if USE_ADABINS:
+  try:
+    from infer import InferenceHelper
+  except:
+    if os.path.exists("AdaBins") is not True:
+      gitclone("https://github.com/shariqfarooq123/AdaBins.git")
+    if not os.path.exists(f'{PROJECT_DIR}/pretrained/AdaBins_nyu.pt'):
+      createPath(f'{PROJECT_DIR}/pretrained')
+      wget("https://cloudflare-ipfs.com/ipfs/Qmd2mMnDLWePKmgfS8m6ntAg4nhV5VkUyAydYBp8cWWeB7/AdaBins_nyu.pt", f'{PROJECT_DIR}/pretrained')
+    sys.path.append(f'{PROJECT_DIR}/AdaBins')
+  from infer import InferenceHelper
+  MAX_ADABINS_AREA = 500000
+
 try:
   sys.path.append(PROJECT_DIR)
   import disco_xform_utils as dxf
@@ -100,6 +115,42 @@ except:
   if os.path.exists('disco_xform_utils.py') is not True:
     shutil.move('disco-diffusion/disco_xform_utils.py', 'disco_xform_utils.py')
   sys.path.append(PROJECT_DIR)
+
+
+# download 512x512 unconditional model.
+model_512_SHA = '9c111ab89e214862b76e1fa6a1b3f1d329b1a88281885943d2cdbe357ad57648'
+model_512_link_fb = 'https://huggingface.co/lowlevelware/512x512_diffusion_unconditional_ImageNet/resolve/main/512x512_diffusion_uncond_finetune_008100.pt'
+model_512_path = f'{model_path}/512x512_diffusion_uncond_finetune_008100.pt'
+if not os.path.exists(model_512_path):
+    wget(model_512_link_fb, model_path)
+else:
+    with open(model_512_path,"rb") as f:
+        bytes = f.read() 
+        hash = hashlib.sha256(bytes).hexdigest();
+    if hash == model_512_SHA:
+        print('512 diffusion Model SHA matches')
+        model_512_downloaded = True
+    else: 
+        print("512 Model SHA doesn't match, redownloading...")
+        wget(model_512_link_fb, model_path)
+
+
+# download secondary model.
+model_secondary_SHA = '983e3de6f95c88c81b2ca7ebb2c217933be1973b1ff058776b970f901584613a'
+model_secondary_path = f'{model_path}/secondary_model_imagenet_2.pth'
+model_secondary_link_fb = 'https://the-eye.eu/public/AI/models/v-diffusion/secondary_model_imagenet_2.pth'
+if not os.path.exists(model_secondary_path):
+    wget(model_secondary_link_fb, model_path)
+else:
+    with open(model_secondary_path,"rb") as f:
+        bytes = f.read() 
+        hash = hashlib.sha256(bytes).hexdigest();
+    if hash == model_secondary_SHA:
+        print('Secondary Model SHA matches')
+        model_secondary_downloaded = True
+    else: 
+        print("Secondary Model SHA doesn't match, redownloading...")
+        wget(model_secondary_link_fb, model_path)
 
 
 from CLIP import clip
@@ -1222,7 +1273,7 @@ RN50x64 = False #@param{type:"boolean"}
 
 PROJECT_DIR = os.path.abspath(os.getcwd())
 root_path = PROJECT_DIR
-outDirPath=f'{root_path}/wrapper/images_out'
+outDirPath=f'{root_path}/images_out'
 model_path = f'{root_path}/models'
 check_model_SHA = False
 
@@ -1947,5 +1998,6 @@ args = gen_args()
 
 if __name__ == '__main__':
     model_config = choose_diffusion_model(diffusion_model_name='512x512_diffusion_uncond_finetune_008100', use_secondary_model=True, diffusion_sampling_mode='ddim')
-    set_parameters(model_config=model_config, batch_name='my-test')
-    print(args)
+    print("Everything works fine.")
+#     set_parameters(model_config=model_config, batch_name='my-test')
+#     print(args)

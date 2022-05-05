@@ -1,4 +1,4 @@
-from utils import *
+from mutils import *
 from guided_diffusion.script_util import create_model_and_diffusion
 import deepl
 auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python

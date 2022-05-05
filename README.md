@@ -32,14 +32,17 @@ The output images is saved by the name of the  origin text, so you can easily fi
 ## Usage
 ```bash
 git clone git@github.com:mazzzystar/disco-diffusion-wrapper.git
-cd disco-diffusion-wrapper
+cd disco-diffusion-wrapper/wrapper
+
+pip install -r requirements.txt
 
 # download pretrain model checkpoints
 # If this step is slow, you can download these model mannually from urls in the 
-# code of wrapper/utils.py, then put these checkpoints in the corresponding folder.
-python wrapper/utils.py
+# code of mutils.py, then put these checkpoints in the corresponding folder.
+python mutils.py
 
-cd wrapper
+# Get your deepL API key, then add it to your run.py or batch_run.py to replace:
+auth_key = ""
 
 # generated image by one sentence
 python run.py "一行白鹭上青天"
