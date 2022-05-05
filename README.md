@@ -34,7 +34,9 @@ The output images is saved by the name of the  origin text, so you can easily fi
 git clone git@github.com:mazzzystar/disco-diffusion-wrapper.git
 cd disco-diffusion-wrapper
 
-# download pretrain model
+# download pretrain model checkpoints
+# If this step is slow, you can download these model mannually from urls in the code of wrapper/utils.py,
+# then ut these checkpoints in the corresponding folder.
 python wrapper/utils.py
 
 cd wrapper
@@ -77,6 +79,5 @@ If you use this project and produced some interesting results, submissions are w
 
 ## Problems
 As it's for fun, I did not look much into the details, and deleted many features(such as VR/3D/Video ...) to make me faster and more clear on the project resonctruction. It's awesome if you're interested in restoring the original function, PR is wellcomed.
-
 
 
