@@ -32,10 +32,9 @@ The output images is saved by the name of the  origin text, so you can easily fi
 ## Usage
 ```bash
 git clone git@github.com:mazzzystar/disco-diffusion-wrapper.git
-
+cd disco-diffusion-wrapper/
 pip install -r requirements.txt
-
-cd disco-diffusion-wrapper/wrapper
+cd wrapper/
 
 # download pretrain model checkpoints
 """If this step is slow, you can download these model mannually from urls in the 
