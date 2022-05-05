@@ -35,8 +35,8 @@ git clone git@github.com:mazzzystar/disco-diffusion-wrapper.git
 cd disco-diffusion-wrapper
 
 # download pretrain model checkpoints
-# If this step is slow, you can download these model mannually from urls in the code of wrapper/utils.py,
-# then ut these checkpoints in the corresponding folder.
+# If this step is slow, you can download these model mannually from urls in the 
+# code of wrapper/utils.py, then put these checkpoints in the corresponding folder.
 python wrapper/utils.py
 
 cd wrapper
