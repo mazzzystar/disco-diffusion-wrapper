@@ -42,7 +42,7 @@ def load_diffusion_model(batch_name):
     return model, diffusion, clip_models, secondary_model, lpips_model
     
 
-def diffuse(text_prompt, batch_name, image_prompts={}, steps=200, batch_size=1, display_rate=40):
+def diffuse(text_prompt, batch_name, image_prompts={}, init_image=None, steps=200, batch_size=1, display_rate=40):
     model, diffusion, clip_models, secondary_model, lpips_model = load_diffusion_model(batch_name)
     global args
     batchNum = args["batchNum"]
@@ -57,6 +57,7 @@ def diffuse(text_prompt, batch_name, image_prompts={}, steps=200, batch_size=1, 
     args['steps'] = steps
     args['batch_size'] = batch_size
     args['display_rate'] = display_rate
+    args['init_image'] = init_image
     
     args = SimpleNamespace(**args)
 
@@ -76,11 +77,11 @@ def diffuse(text_prompt, batch_name, image_prompts={}, steps=200, batch_size=1, 
 if __name__ == '__main__':
     print(str(sys.argv[1]))
     input_text = str(sys.argv[1])
-    input_img_path = "" # If do not need input img，then set None or ""
+    input_img_path = None # If do not need input img，then set None or ""
     result = translate(input_text)
     del translator
     text_prompts, image_prompts = simple_prompts(result, input_img_path)
     print(text_prompts)
     outdirName = "my-test"
-    diffuse(text_prompts, outdirName, steps=240, image_prompts=image_prompts, display_rate=40)
+    diffuse(text_prompts, outdirName, steps=240, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
     

@@ -64,7 +64,7 @@ class DiscoDiffusion():
         self.batch_name = batch_name
         self.model, self.diffusion, self.clip_models, self.secondary_model, self.lpips_model = load_diffusion_model(batch_name)
     
-    def draw(self, text_prompts, orig_text, image_prompts={}, steps=200, batch_size=1, display_rate=40):
+    def draw(self, text_prompts, orig_text, image_prompts={}, init_image=None, steps=200, batch_size=1, display_rate=40):
         global args
         batchNum = args["batchNum"]
         start_frame = args["start_frame"]
@@ -78,6 +78,7 @@ class DiscoDiffusion():
         args['steps'] = steps
         args['batch_size'] = batch_size
         args['display_rate'] = display_rate
+        args['init_image'] = init_image
 
         args = SimpleNamespace(**args)
 
@@ -114,12 +115,12 @@ if __name__ == '__main__':
                 from utils import *
                 input_text = line.strip() + "，" + str(style)
                 print(input_text)
-                input_img_path = "" # If image input not needed, set None or ""
+                input_img_path = None # If image input not needed, set None or ""
                 result = translate(input_text)
 
                 text_prompts, image_prompts = simple_prompts(result, input_img_path)
                 print(text_prompts)
-                disco.draw(text_prompts, input_text, steps=240, image_prompts=image_prompts, display_rate=40)
+                disco.draw(text_prompts, input_text, steps=240, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
             except Exception as e:
                 print(e)
     del translator
