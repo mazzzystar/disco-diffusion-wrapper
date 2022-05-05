@@ -1,6 +1,7 @@
 #@title ### 1.4 Define Midas functions
 import os
 import sys
+import shutil
 import torch
 from dataclasses import dataclass
 from functools import partial
@@ -26,6 +27,10 @@ from tqdm.notebook import tqdm
 
 import subprocess, os, sys
 
+import os
+def createPath(filepath):
+    os.makedirs(filepath, exist_ok=True)
+
 def gitclone(url):
   res = subprocess.run(['git', 'clone', url], stdout=subprocess.PIPE).stdout.decode('utf-8')
   print(res)
@@ -43,6 +48,9 @@ def wget(url, outputdir):
   print(res)
 
 PROJECT_DIR = os.path.abspath(os.getcwd())
+root_path = PROJECT_DIR
+model_path = f'{root_path}/models'
+createPath(model_path)
 sys.path.append(PROJECT_DIR)
 try:
   from CLIP import clip
@@ -126,17 +134,11 @@ from midas.midas_net import MidasNet
 from midas.midas_net_custom import MidasNet_small
 from midas.transforms import Resize, NormalizeImage, PrepareForNet
 
-root_path = PROJECT_DIR
-model_path = f'{root_path}/models'
 max_frames = 10000#@param {type:"number"}
 
 width_height = [1280, 768]#@param{type: 'raw'}
 side_x = (width_height[0]//64)*64;
 side_y = (width_height[1]//64)*64;
-
-import os
-def createPath(filepath):
-    os.makedirs(filepath, exist_ok=True)
 
 default_models = {
     "midas_v21_small": f"{model_path}/midas_v21_small-70d6b9c8.pt",
