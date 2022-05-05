@@ -1,5 +1,5 @@
 # disco-diffusion-wrapper
-My implementation of [disco diffusion](https://github.com/alembics/disco-diffusion) wrapper that could run your own GPU with a batch  of input text. 
+A [disco diffusion](https://github.com/alembics/disco-diffusion) wrapper that could run on your own GPU with a batch  of input text. 
 
 
 ## What this repo did
