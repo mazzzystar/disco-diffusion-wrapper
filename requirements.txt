@@ -61,7 +61,6 @@ glob2==0.7
 google-auth==2.6.6
 google-auth-oauthlib==0.4.6
 grpcio==1.26.0
-httplib2==0.14.0
 hyperlink==19.0.0
 idna==2.8
 importlib-metadata==4.11.3
