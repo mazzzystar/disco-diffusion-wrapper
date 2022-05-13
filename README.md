@@ -33,6 +33,8 @@ The output images is saved by the name of the  origin text, so you can easily fi
 ```bash
 git clone git@github.com:mazzzystar/disco-diffusion-wrapper.git
 cd disco-diffusion-wrapper/
+conda create --name disco
+conda activate disco
 pip install -r requirements.txt
 cd wrapper/
 
