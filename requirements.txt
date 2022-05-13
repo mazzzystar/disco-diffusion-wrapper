@@ -22,7 +22,6 @@ cffi==1.15.0
 chardet==3.0.4
 charset-normalizer==2.0.12
 Click==7.0
-cloud-init==20.1
 cmake==3.22.4
 colorama==0.4.3
 command-not-found==0.3
