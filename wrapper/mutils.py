@@ -101,7 +101,7 @@ if USE_ADABINS:
       gitclone("https://github.com/shariqfarooq123/AdaBins.git")
     if not os.path.exists(f'{PROJECT_DIR}/pretrained/AdaBins_nyu.pt'):
       createPath(f'{PROJECT_DIR}/pretrained')
-      wget("https://cloudflare-ipfs.com/ipfs/Qmd2mMnDLWePKmgfS8m6ntAg4nhV5VkUyAydYBp8cWWeB7/AdaBins_nyu.pt", f'{PROJECT_DIR}/pretrained')
+      wget("https://github.com/mazzzystar/disco-diffusion-wrapper/releases/download/v0.1.0/AdaBins_nyu.pt", f'{PROJECT_DIR}/pretrained')
     sys.path.append(f'{PROJECT_DIR}/AdaBins')
   from infer import InferenceHelper
   MAX_ADABINS_AREA = 500000
