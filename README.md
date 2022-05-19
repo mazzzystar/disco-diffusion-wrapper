@@ -18,6 +18,7 @@ def translate(text, source_lang="ZH", target_lang="EN-US"):
     res = translator.translate_text(text, source_lang="ZH", target_lang="EN-US")
     return res
 ```
+You can also turn-off text  translation by setting `USE_TRANSLATE=False` so that you don't need the DeepL authKey. 
 
 3.Batch generating & saving.
 As the loading part and the inferring part is seperated, you do not need to load pretrain model again for a new sentence. This reduces a bunch of time.

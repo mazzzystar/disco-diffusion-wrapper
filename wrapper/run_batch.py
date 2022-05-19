@@ -6,8 +6,11 @@ import string
 import os
 from zhon.hanzi import punctuation as punc_zh
 
-auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python
-translator = deepl.Translator(auth_key)
+USE_TRANSLATE=True  # Set False if you don't need to translate the text_prompts.
+
+if USE_TRANSLATE:
+    auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python
+    translator = deepl.Translator(auth_key)
 torch.backends.cudnn.benchmark = True
 
 def translate(text, source_lang="ZH", target_lang="EN-US"):
@@ -101,6 +104,7 @@ class DiscoDiffusion():
 
 
 if __name__ == '__main__':
+    global args
     f = open('sentence.list', 'r')
     # The folder name to save all output images.
     disco = DiscoDiffusion('poem')
@@ -112,11 +116,14 @@ if __name__ == '__main__':
         for style in style_class:
             try:
                 del args
-                from utils import *
+                from mutils import *
                 input_text = line.strip() + "，" + str(style)
                 print(input_text)
                 input_img_path = None # If image input not needed, set None or ""
-                result = translate(input_text)
+                if USE_TRANSLATE:
+                    result = translate(input_text)
+                else:
+                    result = input_text
 
                 text_prompts, image_prompts = simple_prompts(result, input_img_path)
                 print(text_prompts)

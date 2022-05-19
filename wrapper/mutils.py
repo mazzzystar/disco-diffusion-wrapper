@@ -1999,5 +1999,5 @@ args = gen_args()
 if __name__ == '__main__':
     model_config = choose_diffusion_model(diffusion_model_name='512x512_diffusion_uncond_finetune_008100', use_secondary_model=True, diffusion_sampling_mode='ddim')
     print("Everything works fine.")
-#     set_parameters(model_config=model_config, batch_name='my-test')
-#     print(args)
+    #set_parameters(model_config=model_config, batch_name='my-test')
+    #print(args)
