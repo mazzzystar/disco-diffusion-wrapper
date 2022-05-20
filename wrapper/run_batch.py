@@ -16,6 +16,7 @@ torch.backends.cudnn.benchmark = True
 def translate(text, source_lang="ZH", target_lang="EN-US"):
     """
     You can change the source language by your situation.
+    See https://github.com/DeepLcom/deepl-python
     """
     res = translator.translate_text(text, source_lang="ZH", target_lang="EN-US")
     return res
@@ -91,9 +92,13 @@ class DiscoDiffusion():
             do_run(self.model, self.diffusion, self.clip_models, self.secondary_model, self.lpips_model)
         except Exception as e:
             print(e)
+            print("""If CUDA out of memory, you can decrease the number of CLIP model by setting it to False.
+                    But make sure at least 1 CLIP model is setting to True.
+                    See https://github.com/mazzzystar/disco-diffusion-wrapper/blob/148262c34ea45f094a9d4ef1536a80f1c1201602/wrapper/mutils.py#L1264-L1271""")
             pass
         finally:
-            localfile = f'images_out/{self.batch_name}/'+text_prompts[0][0].replace(',', '').replace('.', '').replace(' ', '_') + '_200.png'
+            _step_str = str(steps).zfill(3)
+            localfile = f'images_out/{self.batch_name}/'+text_prompts[0][0].replace(',', '').replace('.', '').replace(' ', '_') + f'_{_step_str}.png'
             
             newfile_name = remove_comma(orig_text)
             newfile_path = f'images_out/{self.batch_name}/'+ newfile_name +".png"
@@ -127,7 +132,7 @@ if __name__ == '__main__':
 
                 text_prompts, image_prompts = simple_prompts(result, input_img_path)
                 print(text_prompts)
-                disco.draw(text_prompts, input_text, steps=240, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
+                disco.draw(text_prompts, input_text, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
             except Exception as e:
                 print(e)
     del translator

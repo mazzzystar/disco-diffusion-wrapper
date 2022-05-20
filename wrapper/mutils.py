@@ -938,6 +938,9 @@ def do_run(model, diffusion, clip_models, secondary_model, lpips_model):
             elif j in margs.intermediate_saves:
               intermediateStep = True
 #             with image_display:
+            if j > margs.steps: 
+                print(f'Total steps = {margs.steps}, finished.')
+                return
             if j % margs.display_rate == 0 or cur_t == -1 or intermediateStep == True:
                 for k, image in enumerate(sample['pred_xstart']):
 #                       import pdb
@@ -953,7 +956,7 @@ def do_run(model, diffusion, clip_models, secondary_model, lpips_model):
                           filename = filename + '_' + str(j).zfill(3) + '.png'
                           image.save(os.path.join(outDirPath, margs.batch_name, filename))
 #                           image.show()
-                    if j == 200: return 
+                    if j == margs.steps: return 
     
                     if cur_t == -1:
                       if frame_num == 0:

@@ -67,6 +67,9 @@ def diffuse(text_prompt, batch_name, image_prompts={}, init_image=None, steps=20
         do_run(model, diffusion, clip_models, secondary_model, lpips_model)
     except Exception as e:
         print(e)
+        print("""If CUDA out of memory, you can decrease the number of CLIP model by setting it to False.
+                    But make sure at least 1 CLIP model is setting to True.
+                    See https://github.com/mazzzystar/disco-diffusion-wrapper/blob/148262c34ea45f094a9d4ef1536a80f1c1201602/wrapper/mutils.py#L1264-L1271""")
         pass
     finally:
         print('Seed used:', args.seed)
@@ -83,5 +86,5 @@ if __name__ == '__main__':
     text_prompts, image_prompts = simple_prompts(result, input_img_path)
     print(text_prompts)
     outdirName = "my-test"
-    diffuse(text_prompts, outdirName, steps=240, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
+    disco.draw(text_prompts, input_text, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
     
