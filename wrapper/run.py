@@ -86,5 +86,5 @@ if __name__ == '__main__':
     text_prompts, image_prompts = simple_prompts(result, input_img_path)
     print(text_prompts)
     outdirName = "my-test"
-    disco.draw(text_prompts, input_text, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
+    diffuse(text_prompts, outdirName, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
     
