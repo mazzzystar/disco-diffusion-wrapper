@@ -114,7 +114,7 @@ parso==0.8.3
 pathtools==0.1.2
 pexpect==4.6.0
 pickleshare==0.7.5
-Pillow==9.1.0
+Pillow==9.1.1
 ply==3.11
 prometheus-client==0.14.1
 promise==2.3
