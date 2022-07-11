@@ -1,6 +1,8 @@
 # disco-diffusion-wrapper
 Implementation of a [disco diffusion](https://github.com/alembics/disco-diffusion) wrapper that could run on your own GPU with a batch  of input text. 
 
+Based on this work, an AI painting website (https://6pen.art/) was built, you may have a try.
+
 
 ## What this repo did
 1.Separate the model loading and model inference parts of the initial code. Now you can use it like:
