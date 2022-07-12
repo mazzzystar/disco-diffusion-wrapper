@@ -35,14 +35,13 @@ decorator==4.4.2
 deepl==1.6.0
 deepl-cli==0.2.1
 defusedxml==0.7.1
-distro==1.4.0
-distro-info===0.23ubuntu1
+distro
+distro-info
 dlib==19.23.1
 docker-pycreds==0.4.0
 einops==0.4.1
 entrypoints==0.3
-executing==0.8.3
-fail2ban==0.11.1
+executing
 falco==0.4.0
 fastjsonschema==2.15.3
 ffmpeg==1.4
@@ -66,8 +65,7 @@ incremental==16.10.1
 ipykernel==6.13.0
 ipython==8.2.0
 ipython_genutils==0.2.0
-ipywidgets==7.7.0
-isc==2.0
+ipywidgets
 jedi==0.18.1
 Jinja2==3.1.1
 jmespath==1.0.0
@@ -83,7 +81,6 @@ jupyterlab-pygments==0.2.2
 jupyterlab-widgets==1.1.0
 keyring==18.0.1
 kiwisolver==1.4.2
-language-selector==0.1
 launchpadlib==1.10.13
 lazr.restfulclient==0.14.2
 lazr.uri==1.0.3
