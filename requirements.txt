@@ -122,13 +122,11 @@ pure-eval==0.2.2
 pyasn1==0.4.2
 pyasn1-modules==0.2.1
 pycparser==2.21
-pycurl==7.43.0.2
 pyDeprecate==0.3.2
 pyee==8.2.2
 Pygments==2.12.0
 PyGObject==3.36.0
 PyHamcrest==1.9.0
-pyinotify==0.9.6
 PyJWT==2.4.0
 pymacaroons==0.13.0
 PyNaCl==1.3.0
@@ -137,11 +135,7 @@ pyparsing==3.0.8
 pyppeteer==1.0.2
 pyrsistent==0.15.5
 pyserial==3.4
-PySocks==1.7.1
-pytest-runner==6.0.0
-python-apt==2.0.0+ubuntu0.20.4.7
-python-dateutil==2.8.2
-python-debian===0.1.36ubuntu1
+PySocks
 pytorch-lightning==1.6.2
 pytorch-pretrained-biggan==0.1.1
 pytz==2022.1
@@ -166,12 +160,9 @@ setproctitle==1.2.3
 shortuuid==1.0.8
 simplejson==3.16.0
 six==1.14.0
-smmap==5.0.0
-sos==4.2
 soupsieve==2.3.2.post1
 ssh-import-id==5.10
 stack-data==0.2.0
-systemd-python==234
 tensorboard==2.8.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
@@ -187,10 +178,6 @@ tornado==6.1
 tqdm==4.64.0
 traitlets==5.1.1
 Twisted==22.4.0
-typing_extensions==4.2.0
-ubuntu-advantage-tools==27.6
-ufw==0.36
-unattended-upgrades==0.1
 urllib3==1.26.5
 wadllib==1.3.3
 wandb==0.12.15
@@ -202,4 +189,3 @@ widgetsnbextension==3.6.0
 yarl==1.7.2
 zhon==1.1.5
 zipp==1.0.0
-zope.interface==4.7.1
