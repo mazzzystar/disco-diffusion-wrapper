@@ -42,7 +42,6 @@ docker-pycreds==0.4.0
 einops==0.4.1
 entrypoints==0.3
 executing
-falco==0.4.0
 fastjsonschema==2.15.3
 ffmpeg==1.4
 filelock==3.6.0
