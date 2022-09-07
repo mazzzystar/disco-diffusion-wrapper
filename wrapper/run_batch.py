@@ -135,5 +135,6 @@ if __name__ == '__main__':
                 disco.draw(text_prompts, input_text, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
             except Exception as e:
                 print(e)
-    del translator
+    if translator is not None:
+        del translator
     
