@@ -82,7 +82,8 @@ if __name__ == '__main__':
     input_text = str(sys.argv[1])
     input_img_path = None # If do not need input img，then set None or ""
     result = translate(input_text)
-    del translator
+    if translator is not None:
+        del translator
     text_prompts, image_prompts = simple_prompts(result, input_img_path)
     print(text_prompts)
     outdirName = "my-test"
