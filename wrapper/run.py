@@ -42,7 +42,7 @@ def load_diffusion_model(batch_name):
     return model, diffusion, clip_models, secondary_model, lpips_model
     
 
-def diffuse(text_prompt, batch_name, image_prompts={}, init_image=None, steps=200, batch_size=1, display_rate=40):
+def diffuse(text_prompt, batch_name, image_prompts={}, init_image=None, steps=241, batch_size=1, display_rate=40):
     model, diffusion, clip_models, secondary_model, lpips_model = load_diffusion_model(batch_name)
     global args
     batchNum = args["batchNum"]
