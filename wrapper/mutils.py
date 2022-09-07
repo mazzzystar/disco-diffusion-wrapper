@@ -1837,7 +1837,7 @@ def gen_args():
     cutn_batches = 4  #@param{type: 'number'}
     init_image = None
     init_scale = 1000 #@param{type: 'integer'}
-    skip_steps = 10 #@param{type: 'integer'}
+    skip_steps = 9 #@param{type: 'integer'}
     skip_augs = False#@param{type: 'boolean'}
     diffusion_sampling_mode = 'ddim' #@param ['plms','ddim']  
     side_x = (width_height[0]//64)*64;
