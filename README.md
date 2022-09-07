@@ -55,7 +55,7 @@ python run.py "一行白鹭上青天"
 # batch generation
 touch sentence.list
 # fill your text in, one by a line.
-python batch_run.py
+python run_batch.py
 ```
 
 ## Samples
