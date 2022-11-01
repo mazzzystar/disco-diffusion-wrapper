@@ -6,7 +6,7 @@ import string
 import os
 from zhon.hanzi import punctuation as punc_zh
 
-USE_TRANSLATE=True  # Set False if you don't need to translate the text_prompts.
+USE_TRANSLATE=False  # Set False if you don't need to translate the text_prompts.
 
 if USE_TRANSLATE:
     auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python
@@ -126,7 +126,7 @@ if __name__ == '__main__':
                 print(input_text)
                 input_img_path = None # If image input not needed, set None or ""
                 if USE_TRANSLATE:
-                    result = translate(input_text)
+                    input_text = translate(input_text)
                 else:
                     result = input_text
 
