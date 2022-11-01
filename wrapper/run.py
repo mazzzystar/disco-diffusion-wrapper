@@ -1,8 +1,12 @@
 from mutils import *
 from guided_diffusion.script_util import create_model_and_diffusion
 import deepl
-auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python
-translator = deepl.Translator(auth_key)
+
+USE_TRANSLATE=False  # Set False if you don't need to translate the text_prompts.
+
+if USE_TRANSLATE:
+    auth_key = ""  # Replace with your free deepL key. See https://github.com/DeepLcom/deepl-python
+    translator = deepl.Translator(auth_key)
 torch.backends.cudnn.benchmark = True
 
 
@@ -81,10 +85,11 @@ if __name__ == '__main__':
     print(str(sys.argv[1]))
     input_text = str(sys.argv[1])
     input_img_path = None # If do not need input img，then set None or ""
-    result = translate(input_text)
+    if USE_TRANSLATE:
+        input_text = translate(input_text)
     if translator is not None:
         del translator
-    text_prompts, image_prompts = simple_prompts(result, input_img_path)
+    text_prompts, image_prompts = simple_prompts(input_text, input_img_path)
     print(text_prompts)
     outdirName = "my-test"
     diffuse(text_prompts, outdirName, steps=200, image_prompts=image_prompts, init_image=input_img_path, display_rate=40)
