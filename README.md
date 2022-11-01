@@ -47,6 +47,7 @@ code of mutils.py, then put these checkpoints in the corresponding folder."""
 python mutils.py
 
 # Get your deepL API key, then add it to your run.py or batch_run.py to replace:
+USE_TRANSLATE=True
 auth_key = ""
 
 # generated image by one sentence
