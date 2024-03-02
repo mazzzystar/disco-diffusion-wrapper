@@ -1,15 +1,8 @@
-\## Language | 语言选择
-
-- [English](###english) 
--  [中文](###中文)
-
-
-
+[English](#english) 
 ____
 
 
-
-### 中文
+# 中文
 
 # disco-diffusion-wrapper 
 
@@ -124,7 +117,7 @@ python run_batch.py
 
 
 
-### English
+# English
 
 
 
