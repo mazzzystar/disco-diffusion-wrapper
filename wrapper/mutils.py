@@ -103,7 +103,15 @@ if USE_ADABINS:
       createPath(f'{PROJECT_DIR}/pretrained')
       wget("https://github.com/mazzzystar/disco-diffusion-wrapper/releases/download/v0.1.0/AdaBins_nyu.pt", f'{PROJECT_DIR}/pretrained')
     sys.path.append(f'{PROJECT_DIR}/AdaBins')
-  from infer import InferenceHelper
+
+  try:
+    from infer import InferenceHelper
+  except ImportError as exc:
+      try:
+          from Adabins.infer import InferenceHelper
+      except ImportError as exc:
+          print(f"导入InfrenceHelper时错误:", exc)
+
   MAX_ADABINS_AREA = 500000
 
 try:
@@ -179,12 +187,37 @@ DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Using device:', DEVICE)
 
 device = DEVICE # At least one of the modules expects this name..
+try:
+    from midas.dpt_depth import DPTDepthModel
+except ImportError:
+    try:
+        from Midas.midas.dpt_depth import DPTDepthModel
+    except ImportError:
+        print(f'加载DPTDepthModel模型失败')
 
-from midas.dpt_depth import DPTDepthModel
-from midas.midas_net import MidasNet
-from midas.midas_net_custom import MidasNet_small
-from midas.transforms import Resize, NormalizeImage, PrepareForNet
+try:
+    from midas.midas_net import MidasNet
+except ImportError:
+    try:
+        from Midas.midas.midas_net import MidasNet
+    except ImportError:
+        print(f'加载MidasNet模型失败')
 
+try:
+    from midas.midas_net_custom import MidasNet_small
+except ImportError:
+    try:
+        from Midas.midas.midas_net_custom import Midasnet_small
+    except ImportError:
+        print(f'加载MidasNet_small模型失败')
+
+try:
+    from midas.transforms import Resize, NormalizeImage, PrepareForNet
+except ImportError:
+    try:
+        from Midas.midas.transforms import Resize, NormalizeImage, PrepareForNet
+    except ImportError:
+        print(f'加载midas.transforms模型失败')
 max_frames = 10000#@param {type:"number"}
 
 width_height = [1280, 768]#@param{type: 'raw'}

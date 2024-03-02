@@ -11,7 +11,7 @@ google-auth-oauthlib
 hyperlink
 lpips
 matplotlib
-matplotlib-inlin
+matplotlib-inline
 numpy
 oauthlib
 omegaconf
