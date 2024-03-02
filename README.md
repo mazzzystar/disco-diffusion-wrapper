@@ -1,9 +1,6 @@
 [English](#english) 
 ____
 
-
-# 中文
-
 # disco-diffusion-wrapper 
 
 本项目为[disco diffusion](https://github.com/alembics/disco-diffusion)的封装实现，使其能够在您的GPU上批量处理输入文本运行。
